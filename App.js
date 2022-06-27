@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -10,6 +10,8 @@ import MyListingScreen from './src/pages/MyListingScreen';
 import DetailScreenCar from './src/pages/DetailScreenCar';
 import DetailScreenElectronic from './src/pages/DetailScreenElektronic';
 import FeedScreen from './src/pages/FeedScreen';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { faBell, faCamera, faGrip, faHouse, faLightbulb, faMessage, faShareNodes } from '@fortawesome/free-solid-svg-icons';
 const Stack = createStackNavigator();
 function HomeStack() {
   return (
@@ -97,13 +99,20 @@ export default function App() {
           }}
         />
         <Tab.Screen
-          name="İlanlarım"
+          name="MyListing"
           component={MyListingScreen}
           options={{
-            tabBarLabel: 'İlanlarım',
-            headerShown: false,
-            tabBarIcon: ({color, size}) => (
-              <Icon name="dots-grid" color={color} size={size} />
+            header: () => (
+              <View style={[styles.header]}>
+                <Text style={[styles.headerLabel]}>İlanlar</Text>
+                <View style={{ flexDirection:'row' }}>
+                  <FontAwesomeIcon icon={faShareNodes} style={{marginRight: 10, color:'#757575'}}/>
+                  <FontAwesomeIcon icon={faLightbulb} style={{color:'#ff3f55'}}/>
+                </View>
+              </View>),
+            tabBarLabel: 'MyListing',
+            tabBarIcon: ({ color, size, focused }) => (
+              <FontAwesomeIcon icon={faGrip} color={focused ? '#ff3f55' : '#ccc'} />
             ),
           }}
         />
@@ -141,4 +150,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: '#ff69b4',
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 50,
+    backgroundColor: '#fff',
+    paddingRight: 25,
+    paddingLeft: 10
+  },
+  headerLabel: {
+    color: '#2c2c2c',
+    fontWeight: 'bold',
+    fontSize: 18
+  }
 });
