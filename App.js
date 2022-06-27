@@ -12,6 +12,7 @@ import DetailScreenElectronic from './src/pages/DetailScreenElektronic';
 import FeedScreen from './src/pages/FeedScreen';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faBell, faCamera, faGrip, faHouse, faLightbulb, faMessage, faShareNodes } from '@fortawesome/free-solid-svg-icons';
+import SellScreen from './src/pages/SellScreen';
 const Stack = createStackNavigator();
 function HomeStack() {
   return (
@@ -71,8 +72,8 @@ export default function App() {
           options={{
             tabBarLabel: 'Anasayfa',
             headerShown: false,
-            tabBarIcon: ({color, size}) => (
-              <Icon name="home" color={color} size={size} />
+            tabBarIcon: ({color, size, focused}) => (
+              <FontAwesomeIcon icon={faHouse} color={focused ? '#ff3f55' : '#ccc'} />
             ),
           }}
         />
@@ -82,8 +83,18 @@ export default function App() {
           options={{
             tabBarLabel: 'Notification',
             headerShown: false,
-            tabBarIcon: ({color, size}) => (
-              <Icon name="bell" color={color} size={size} />
+            tabBarIcon: ({color, size, focused}) => (
+              <FontAwesomeIcon icon={faBell} color={focused ? '#ff3f55' : '#ccc'} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Sell"
+          component={SellScreen}
+          options={{
+            tabBarLabel: 'Sell',
+            tabBarIcon: ({ color, size, focused }) => (
+              <FontAwesomeIcon icon={faCamera} color={focused ? '#ff3f55' : '#ccc'} />
             ),
           }}
         />
@@ -93,8 +104,8 @@ export default function App() {
           options={{
             tabBarLabel: 'Chat',
             headerShown: false,
-            tabBarIcon: ({color, size}) => (
-              <Icon name="chat-processing" color={color} size={size} />
+            tabBarIcon: ({color, size, focused}) => (
+              <FontAwesomeIcon icon={faMessage} color={focused ? '#ff3f55' : '#ccc'} />
             ),
           }}
         />
