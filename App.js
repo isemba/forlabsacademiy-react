@@ -100,7 +100,7 @@ export default function App() {
           name="İlanlarım"
           component={MyListingScreen}
           options={{
-            tabBarLabel: 'Advert',
+            tabBarLabel: 'İlanlarım',
             headerShown: false,
             tabBarIcon: ({color, size}) => (
               <Icon name="dots-grid" color={color} size={size} />
