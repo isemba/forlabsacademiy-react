@@ -24,6 +24,7 @@ import {
 import ImageBox from '../components/ImageBox';
 import Textbox from '../components/Textbox';
 import ModalComp from '../components/ModalComp';
+import ProfileScreen from './ProfileScreen';
 
 const FeedScreen = ({navigation}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
@@ -35,18 +36,7 @@ const FeedScreen = ({navigation}) => {
         <TouchableHighlight
           underlayColor={'transparent'}
           onPress={() => navigation.navigate('Profile')}>
-          <Image
-            style={{
-              width: 40,
-              height: 40,
-              padding: 10,
-              backgroundColor: '#cecece',
-              borderRadius: 50,
-            }}
-            source={{
-              uri: 'https://icons-for-free.com/download-icon-boy+man+person+user+woman+icon-1320085967769585303_512.png',
-            }}
-          />
+          <ProfileScreen />
         </TouchableHighlight>
 
         <Searchbar
