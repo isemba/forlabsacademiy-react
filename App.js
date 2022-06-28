@@ -118,7 +118,7 @@ export default function App() {
                 <Text style={[styles.headerLabel]}>İlanlar</Text>
                 <View style={{ flexDirection:'row' }}>
                   <FontAwesomeIcon icon={faShareNodes} style={{marginRight: 10, color:'#757575'}}/>
-                  <FontAwesomeIcon icon={faLightbulb} style={{color:'#ff3f55'}}/>
+                  <FontAwesomeIcon icon={faLightbulb} style={{color:'#ff3f55'}} />
                 </View>
               </View>),
             tabBarLabel: 'MyListing',

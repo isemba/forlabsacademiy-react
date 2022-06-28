@@ -4,6 +4,7 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { faEllipsis, faPen, faTrash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Avatar } from 'react-native-paper';
+import Popup from '../components/Popup';
 
 const FirstRoute = () => (
   <View style={[styles.scene]}>
@@ -67,6 +68,7 @@ const SecondRoute = () => (
 );
 const ThirdRoute = () => (
   <View style={[styles.scene]}>
+    <Popup></Popup>
     <View style={[styles.card]}>
       <View style={[styles.cardContent]}>
         <View style={[styles.leftContent]}>
@@ -129,10 +131,10 @@ const FourthRoute = () => (
 const renderTabBar = props => (
   <TabBar
     {...props}
-    style={{ backgroundColor: 'white', elevation: 0, shadowOffset: { height: 0, width: 0 } }}
+    style={{ backgroundColor: 'white', elevation: 0, shadowOffset: { height: 0, width: 0 }, height: 40}}
     indicatorStyle={{ backgroundColor: '#ff3f55'}}
     renderLabel={({ route, color, focused }) => (
-      focused ? <Text style={{ fontWeight: 'bold', color: '#ff3f55' }} >{route.title}</Text>: <Text style={{ fontWeight: 'bold' }} color={'#ccc'} >{route.title}</Text>
+      focused ? <Text style={{ fontWeight: 'bold', color: '#ff3f55' }} >{route.title}</Text>: <Text style={{ fontWeight: 'bold', width:'100%', alignItems: 'center', height: '100%', justifyContent:'flex-start' }} color={'#ccc'} >{route.title}</Text>
      
     )}
   />
@@ -170,12 +172,11 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   scene: {
-    flex: 1, color: 'pink',
+    flex: 1, 
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white',
-    padding: 20
   },
   card: {
     shadowColor: "#000",
@@ -189,16 +190,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     display: 'flex',
     flexDirection: 'column',
-    position: 'relative',
     borderRadius: 6,
-    marginBottom: 15
+    marginBottom: 15,
+    margin: 20
   },
   cardContent: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    position: 'relative',
     padding: 15,
   },
   leftContent: {
@@ -261,7 +261,8 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: '#F5F5F5',
     paddingLeft: 25,
-    marginBottom: 15,
+    margin: 20,
+    marginBottom: 0
   },
   avatar: { 
     width: 60, 
