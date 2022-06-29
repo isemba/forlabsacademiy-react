@@ -18,7 +18,6 @@ const Textbox = ({titleLeft, titleRight}) => {
       </Text>
       <Text style={{fontSize: 15, color: '#ff1f84', fontWeight: '600'}}>
         {titleRight}
-        <Icon name="chevron-right" color={'#ff1f84'} size={20} />
       </Text>
     </View>
   );
