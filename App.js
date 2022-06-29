@@ -67,7 +67,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
-          name="Home"
+          name="Home1"
           component={HomeStack}
           options={{
             tabBarLabel: 'Anasayfa',
