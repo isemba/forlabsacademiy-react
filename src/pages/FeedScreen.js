@@ -7,6 +7,7 @@ import {
   View,
   Image,
   TouchableHighlight,
+  RefreshControl,
 } from 'react-native';
 import Circlebox from '../components/Circlebox';
 import {
@@ -26,12 +27,24 @@ import Textbox from '../components/Textbox';
 import ModalComp from '../components/ModalComp';
 import ProfileScreen from './ProfileScreen';
 
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
+
 const FeedScreen = ({navigation}) => {
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
-
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View style={styles.menu}>
         <TouchableHighlight
           underlayColor={'transparent'}
@@ -47,15 +60,15 @@ const FeedScreen = ({navigation}) => {
             borderRadius: 10,
             border: 'none',
             backgroundColor: '#d3d6e8',
-            paddingLeft: '15%',
           }}
+          inputStyle={{textAlign: 'center'}}
           onChangeText={onChangeSearch}
           value={searchQuery}
         />
         <Text style={{color: '#FF0033', fontSize: 18}}>Filtrele</Text>
       </View>
       <ModalComp />
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <TouchableHighlight
           underlayColor={'transparent'}
           onPress={() => navigation.navigate('DetailCar')}>
@@ -119,7 +132,7 @@ const FeedScreen = ({navigation}) => {
         </View>
       </ScrollView>
       <Textbox titleLeft="Vitrin İlanları" titleRight="Hepsini Gör" />
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <ImageBox
           link="https://i0.wp.com/shiftdelete.net/wp-content/uploads/2021/10/asgari-ucretle-alinabilecek-telefonlar-10.jpg?fit=1280%2C720&ssl=1"
           size="tiny"
