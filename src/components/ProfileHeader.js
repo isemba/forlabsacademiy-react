@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -11,11 +11,9 @@ import {
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
 import CommentRate from './CommentRate';
+import { color } from 'react-native-reanimated';
 
-const Comment = ({commentrate}) => {
-const [state, setstate] = useState();
-
-
+const ProfileHeader = ({prps}) => {
   return (
     <View style={styles.commentContainer}>
       <View style={styles.profileImgbox}>
@@ -26,8 +24,8 @@ const [state, setstate] = useState();
           }}
         />
         <View style={{display: 'flex', marginLeft: 15}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#000'}}>
-            İSİM S. <Text style>satıcı</Text>
+          <Text style={{fontSize: 10, fontWeight: 'bold', color: '#000'}}>
+            İSİM S.
           </Text>
           <View
             style={{
@@ -37,27 +35,27 @@ const [state, setstate] = useState();
             }}>
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <Text
@@ -71,37 +69,16 @@ const [state, setstate] = useState();
           </View>
         </View>
       </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginTop: 10,
-        }}>
-
-        
-        <CommentRate text="güvenilir"/>
-        <CommentRate text="Kibar"/>
-        <CommentRate text="Zamanında geldi"/>
-        <CommentRate text="Uygun fiyat"/>
-       
-        
-      </View>
-      <View>
       
-      <Text>Mükemmel satıcı</Text>
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
     commentContainer:{
-        marginTop:10,
-        borderBottomWidth:1,
-        borderBottomColor:'#DDD',
-        paddingTop:10,
-        paddingBottom:10
+        position:'absolute',
+        top:-10,
+        left:50,
 
     }
     ,profileImgbox: {
@@ -112,10 +89,10 @@ const styles = StyleSheet.create({
     
   },
   tinyLogo: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
     borderRadius: 25,
   },
 });
 
-export default Comment;
+export default ProfileHeader;

@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Searchbar} from 'react-native-paper';
 import {
   ScrollView,
   StyleSheet,
@@ -13,6 +12,7 @@ import Textbox from '../components/Textbox';
 import ModalComp from '../components/ModalComp';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import SearchBarComp from '../components/SearchBarComp';
 const DetailScreenElectronic = ({navigation}) => {
   const [searchQuery, setSearchQuery] = React.useState('');
   const onChangeSearch = query => setSearchQuery(query);
@@ -26,19 +26,7 @@ const DetailScreenElectronic = ({navigation}) => {
             <FontAwesomeIcon icon={faArrowLeft} size={25} color={'gray'} />
           </View>
         </TouchableHighlight>
-        <Searchbar
-          placeholder="Ara"
-          style={{
-            width: '60%',
-            height: 38,
-            borderRadius: 10,
-            border: 'none',
-            backgroundColor: '#d3d6e8',
-            paddingLeft: '15%',
-          }}
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
+        <SearchBarComp/>
         <Text style={{color: '#FF0033', fontSize: 18}}>Filtrele (1)</Text>
       </View>
 
