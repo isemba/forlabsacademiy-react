@@ -87,7 +87,8 @@ const styles = StyleSheet.create({
     paddingTop:5,
     paddingBottom:5,
     borderBottomWidth:1,
-    borderBottomColor:'#00000030'
+    borderBottomColor:'#00000030',
+    fontWeight:'bold'
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
