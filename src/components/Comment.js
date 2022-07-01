@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
@@ -13,6 +13,9 @@ import {
 import CommentRate from './CommentRate';
 
 const Comment = ({commentrate}) => {
+const [state, setstate] = useState();
+
+
   return (
     <View style={styles.commentContainer}>
       <View style={styles.profileImgbox}>
@@ -75,7 +78,8 @@ const Comment = ({commentrate}) => {
           flexWrap: 'wrap',
           marginTop: 10,
         }}>
-        {commentrate}
+
+        
         <CommentRate text="güvenilir"/>
         <CommentRate text="Kibar"/>
         <CommentRate text="Zamanında geldi"/>

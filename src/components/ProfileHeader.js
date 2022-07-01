@@ -77,7 +77,7 @@ const ProfileHeader = ({prps}) => {
 const styles = StyleSheet.create({
     commentContainer:{
         position:'absolute',
-        top:-15,
+        top:-10,
         left:50,
 
     }
