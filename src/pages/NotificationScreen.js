@@ -10,11 +10,15 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons/faEllipsis
 import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark'
 import { fontSize } from '@mui/system';
 import { ScrollView } from 'react-native';
-
+import PagerViewOlguCan from '../components/PagerViewOlguCan';
 import { Dimensions } from 'react-native';
 import { Divider } from "@rneui/themed";
-
-
+import Swipeable from 'react-native-swipeable';
+import SwipeableOlgu from '../components/SwipeableOlgu';
+import Lightbox from 'react-native-lightbox-v2';
+ 
+import Swiper from 'react-native-swiper'
+import OlguLightBox from '../components/OlguLightBox';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -27,23 +31,28 @@ return(<ScrollView style={styles.Container}>
   </View>
   <View style={styles.recent}>
   <Text style={{fontSize:30,color:"black",fontWeight:"bold",marginVertical:20}}>Recent</Text>
-  <ScrollView horizontal={true}  >
-
-   <ScroolUser/>
-   <ScroolUser/>
-  </ ScrollView > 
+  <Swiper height={200} horizontal={true}>
+ 
+ <ScroolUser  />
+ 
+   
+  
+  <ScroolUser/>
+  
+  </ Swiper > 
   <Text style={{fontSize:30,color:"black",fontWeight:"bold",marginVertical:20}}>Earlier</Text>
-  <ScrollView horizontal={true} style={{padding:0}} >
+  <Swiper horizontal={true} height={200} >
 
 <ScroolUser/>
 <ScroolUser/>
-</ ScrollView > 
+</ Swiper > 
 
 
   </View>
   <View style={{width:"100%", height:2,backgroundColor:"#aaa",marginVertical:15}}></View>
+  <SwipeableOlgu/>
   <Products navigation={navigation} />
- 
+    
 </ScrollView>);
 }
 const styles=StyleSheet.create({
@@ -75,7 +84,7 @@ const styles=StyleSheet.create({
     position:"absolute",
     color:"#30D5C8",
     zIndex:99,
-    bottom:40,
+    top:60,
     right:10,
     backgroundColor:"white",
     borderRadius:25
@@ -95,7 +104,10 @@ const styles=StyleSheet.create({
 const ScroolUser = () => (
   <View style={styles.scrooCon}>
     <View style={{position:"relative"}}>
-    <Image source={require('./olgu20222cv.jpg')} style={styles.avatar}  ></Image>
+      <Lightbox navigator={navigator}  activeProps={{width:"80%",height:"60%",marginLeft:'auto',marginRight:"auto"}}>
+      <Image source={require('./olgu20222cv.jpg')} style={styles.avatar}  ></Image>
+      </Lightbox>
+    
     <FontAwesomeIcon icon={faCircleUser} style={styles.userblue} size={24}/>
     </View>
     <View style={{width:"55%",marginHorizontal:10}}>
@@ -120,7 +132,7 @@ const Products = ({navigation}) => {
   <View >
           <View style={{flexDirection:"row"}}>
            <View>
-            <Image style={{width:40,height:40,borderRadius:5}} source={{uri:"https://picsum.photos/208"}} />
+           <OlguLightBox><Image style={{width:40,height:40,borderRadius:5}} source={{uri:"https://picsum.photos/208"}} /></OlguLightBox> 
            </View>
            <View style={{marginLeft:15,flex:2}}>
             <Text style={{fontWeight:"700"}}>Bu Fırsatları kaçırma</Text>
@@ -136,21 +148,24 @@ const Products = ({navigation}) => {
          
          
            </View>
-          
+              
            <View style={{marginVertical:15,flexDirection:"row"}}>
            <View style={{width:30}}></View>
-           <View >
-           <ScrollView horizontal={true}>
-               { [...Array(6)].map((a,b) => (<Image key={b} style={{width:100,height:100,borderRadius:10,marginHorizontal:10}} source={{uri:`https://picsum.photos/20${b}`}} />))}
-           </ScrollView>
-           <TouchableOpacity onPress={()=>setModalstate(modalstate=>true)} style={{position:"relative",width:100,borderRadius:18,borderColor:"red",borderWidth:2,justifyContent:"center",alignContent:"center",marginTop:15}}>
+           <View style={{width:"100%",height:200}}>
+           <Swiper bounces={true}>
+               { [...Array(6)].map((a,b) => (<View key={b} style={{flexDirection:"row"}}>
+                <OlguLightBox ><Image  style={{width:100,height:100,borderRadius:10,marginHorizontal:10,resizeMode:"cover"}} source={{uri:`https://picsum.photos/20${b}`}} /></OlguLightBox>
+                <OlguLightBox ><Image  style={{width:100,height:100,borderRadius:10,marginHorizontal:10,resizeMode:"cover"}} source={{uri:`https://picsum.photos/20${b+1}`}} /></OlguLightBox>
+                <OlguLightBox ><Image  style={{width:100,height:100,borderRadius:10,marginHorizontal:10,resizeMode:"cover"}} source={{uri:`https://picsum.photos/20${b+2}`}} /></OlguLightBox>
+               </View>))}
+           </Swiper>
+           <TouchableOpacity onPress={()=>setModalstate(modalstate=>true)} style={{position:"relative",width:100,borderRadius:18,borderColor:"red",borderWidth:2,justifyContent:"center",alignContent:"center",marginBottom:20}}>
         <Text style={{color:"red",padding:5,fontWeight:"700",textAlign:"center"}}>Göz at</Text>
       </TouchableOpacity>
+      {!!modalstate &&  (<MyModal navigation={navigation} setModalstate={setModalstate} modalstate={modalstate}/>)  } 
+      </View>
+      </View>
       
-        {!!modalstate &&  (<MyModal navigation={navigation} setModalstate={setModalstate} modalstate={modalstate}/>)  } 
-      </View>
-      </View>
-           
   </View >
 )
   }
