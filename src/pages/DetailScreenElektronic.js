@@ -6,6 +6,7 @@ import {
   View,
   Image,
   TouchableHighlight,
+  RefreshControl,
 } from 'react-native';
 import ImageBox from '../components/ImageBox';
 import Textbox from '../components/Textbox';
@@ -13,11 +14,21 @@ import ModalComp from '../components/ModalComp';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import SearchBarComp from '../components/SearchBarComp';
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
 const DetailScreenElectronic = ({navigation}) => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = query => setSearchQuery(query);
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
-    <ScrollView>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View style={styles.menu}>
         <TouchableHighlight
           underlayColor={'transparent'}
@@ -26,7 +37,7 @@ const DetailScreenElectronic = ({navigation}) => {
             <FontAwesomeIcon icon={faArrowLeft} size={25} color={'gray'} />
           </View>
         </TouchableHighlight>
-        <SearchBarComp/>
+        <SearchBarComp />
         <Text style={{color: '#FF0033', fontSize: 18}}>Filtrele (1)</Text>
       </View>
 

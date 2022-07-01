@@ -39,6 +39,7 @@ const FeedScreen = ({navigation}) => {
   }, []);
   return (
     <ScrollView
+      showsVerticalScrollIndicator={false}
       style={{marginLeft: 10, marginRight: 10}}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
