@@ -34,9 +34,8 @@ const FeedScreen = ({navigation}) => {
     <ScrollView>
       <View style={styles.menu}>
         <TouchableHighlight
-          underlayColor={'transparent'}
-          onPress={() => navigation.navigate('Profile')}>
-          <ProfileScreen />
+          underlayColor={'transparent'}>
+          <ProfileScreen navigation={navigation} />
         </TouchableHighlight>
 
         <Searchbar

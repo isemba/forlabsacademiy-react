@@ -11,8 +11,9 @@ import {
   faAngleRight,
 } from '@fortawesome/free-solid-svg-icons';
 import CommentRate from './CommentRate';
+import { color } from 'react-native-reanimated';
 
-const Comment = ({commentrate}) => {
+const ProfileHeader = ({prps}) => {
   return (
     <View style={styles.commentContainer}>
       <View style={styles.profileImgbox}>
@@ -23,8 +24,8 @@ const Comment = ({commentrate}) => {
           }}
         />
         <View style={{display: 'flex', marginLeft: 15}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#000'}}>
-            İSİM S. <Text style>satıcı</Text>
+          <Text style={{fontSize: 10, fontWeight: 'bold', color: '#000'}}>
+            İSİM S.
           </Text>
           <View
             style={{
@@ -34,27 +35,27 @@ const Comment = ({commentrate}) => {
             }}>
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <FontAwesomeIcon
               icon={faStar}
-              size={15}
+              size={10}
               style={{color: '#ffcc5c'}}
             />
             <Text
@@ -68,36 +69,16 @@ const Comment = ({commentrate}) => {
           </View>
         </View>
       </View>
-      <View
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginTop: 10,
-        }}>
-        {commentrate}
-        <CommentRate text="güvenilir"/>
-        <CommentRate text="Kibar"/>
-        <CommentRate text="Zamanında geldi"/>
-        <CommentRate text="Uygun fiyat"/>
-       
-        
-      </View>
-      <View>
       
-      <Text>Mükemmel satıcı</Text>
-      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
     commentContainer:{
-        marginTop:10,
-        borderBottomWidth:1,
-        borderBottomColor:'#DDD',
-        paddingTop:10,
-        paddingBottom:10
+        position:'absolute',
+        top:-15,
+        left:50,
 
     }
     ,profileImgbox: {
@@ -108,10 +89,10 @@ const styles = StyleSheet.create({
     
   },
   tinyLogo: {
-    width: 50,
-    height: 50,
+    width: 30,
+    height: 30,
     borderRadius: 25,
   },
 });
 
-export default Comment;
+export default ProfileHeader;
