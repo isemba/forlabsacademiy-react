@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {Colors, Searchbar} from 'react-native-paper';
 import {
   ScrollView,
   StyleSheet,
@@ -7,6 +6,7 @@ import {
   View,
   Image,
   TouchableHighlight,
+  RefreshControl,
 } from 'react-native';
 import Circlebox from '../components/Circlebox';
 import {
@@ -25,37 +25,33 @@ import ImageBox from '../components/ImageBox';
 import Textbox from '../components/Textbox';
 import ModalComp from '../components/ModalComp';
 import ProfileScreen from './ProfileScreen';
+import SearchBarComp from '../components/SearchBarComp';
+
+const wait = timeout => {
+  return new Promise(resolve => setTimeout(resolve, timeout));
+};
 
 const FeedScreen = ({navigation}) => {
-  const [searchQuery, setSearchQuery] = React.useState('');
-  const onChangeSearch = query => setSearchQuery(query);
-
+  const [refreshing, setRefreshing] = React.useState(false);
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
   return (
-    <ScrollView>
+    <ScrollView
+      style={{marginLeft: 10, marginRight: 10}}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }>
       <View style={styles.menu}>
-        <TouchableHighlight
-          underlayColor={'transparent'}
-          onPress={() => navigation.navigate('Profile')}>
-          <ProfileScreen />
+        <TouchableHighlight underlayColor={'transparent'}>
+          <ProfileScreen navigation={navigation} />
         </TouchableHighlight>
-
-        <Searchbar
-          placeholder="Ara"
-          style={{
-            width: '60%',
-            height: 40,
-            borderRadius: 10,
-            border: 'none',
-            backgroundColor: '#d3d6e8',
-            paddingLeft: '15%',
-          }}
-          onChangeText={onChangeSearch}
-          value={searchQuery}
-        />
+        <SearchBarComp />
         <Text style={{color: '#FF0033', fontSize: 18}}>Filtrele</Text>
       </View>
       <ModalComp />
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <TouchableHighlight
           underlayColor={'transparent'}
           onPress={() => navigation.navigate('DetailCar')}>
@@ -119,7 +115,7 @@ const FeedScreen = ({navigation}) => {
         </View>
       </ScrollView>
       <Textbox titleLeft="Vitrin İlanları" titleRight="Hepsini Gör" />
-      <ScrollView horizontal={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <ImageBox
           link="https://i0.wp.com/shiftdelete.net/wp-content/uploads/2021/10/asgari-ucretle-alinabilecek-telefonlar-10.jpg?fit=1280%2C720&ssl=1"
           size="tiny"
@@ -245,6 +241,9 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+  },
+  iconclose: {
+    display: 'none',
   },
   menu: {
     display: 'flex',

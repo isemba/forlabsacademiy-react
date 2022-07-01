@@ -19,6 +19,8 @@ target 'letgo' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'letgoTests' do
     inherit! :complete
     # Pods for testing

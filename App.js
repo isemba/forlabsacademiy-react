@@ -44,19 +44,12 @@ function HomeStack() {
         }}
       />
       <Stack.Screen
-        name="Profile"
-        component={ChatScreen}
+        name="MyListing"
+        component={MyListingScreen}
         options={{
           headerShown: false,
         }}
       />
-      {/* <Stack.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{
-          headerShown: false,
-        }}
-      /> */}
     </Stack.Navigator>
   );
 }
@@ -67,7 +60,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
-          name="Home"
+          name="Home1"
           component={HomeStack}
           options={{
             tabBarLabel: 'Anasayfa',

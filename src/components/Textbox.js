@@ -1,7 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+// import { Icon } from 'react-native-vector-icons/Icon';
 const Textbox = ({titleLeft, titleRight}) => {
   return (
     <View
@@ -18,7 +17,7 @@ const Textbox = ({titleLeft, titleRight}) => {
       </Text>
       <Text style={{fontSize: 15, color: '#ff1f84', fontWeight: '600'}}>
         {titleRight}
-        <Icon name="chevron-right" color={'#ff1f84'} size={20} />
+        {/* <Icon name="chevron-right" color={'#ff1f84'} size={20} /> */}
       </Text>
     </View>
   );

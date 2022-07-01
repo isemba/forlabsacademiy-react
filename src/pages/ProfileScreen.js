@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -14,6 +15,7 @@ import {
   Button,
   TextInput,
   TouchableHighlight,
+  Animated
 } from 'react-native';
 import ProgressBar from 'react-native-progress/Bar';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
@@ -28,10 +30,27 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import CommentRate from '../components/CommentRate';
 import Comment from '../components/Comment';
+import CommentFilter from '../components/CommentFilter';
+import ProfileHeader from '../components/ProfileHeader';
+import MyListing from './MyListingScreen';
 
 
-const ProfileScreen = () => {
+
+const ProfileScreen = ({navigation}) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  
+
+  function scroll(e){
+    const scrollValue = e.nativeEvent.contentOffset.y;
+    if(scrollValue > 90) {
+      setstate(1)
+    }else{
+      setstate(0)
+    }
+  }
+  const [state, setstate] = useState();
+
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -54,6 +73,7 @@ const ProfileScreen = () => {
                   style={{color: 'grey'}}
                 />
               </Pressable>
+              {state ? <ProfileHeader /> : null}
               <Pressable>
                 <FontAwesomeIcon
                   icon={faGear}
@@ -62,7 +82,7 @@ const ProfileScreen = () => {
                 />
               </Pressable>
             </View>
-            <ScrollView>
+            <ScrollView  scrollEventThrottle={16} showsVerticalScrollIndicator={false} onScroll={(e) => scroll(e)}>
               <View style={styles.modalsection1}>
                 <View style={styles.profileImgbox}>
                   <Image
@@ -130,7 +150,7 @@ const ProfileScreen = () => {
                     <FontAwesomeIcon icon={faAddressBook} /> Hızlı,güvenilir
                     satış
                   </Text>
-                  <TouchableHighlight style={styles.csButton}>
+                  <TouchableHighlight style={styles.csButton} onPress={()=> navigation.navigate("MyListing")}>
                     <Text style={{color: 'white'}}>İlanlarımı görüntüle</Text>
                   </TouchableHighlight>
                 </View>
@@ -196,7 +216,7 @@ const ProfileScreen = () => {
                   }}></View>
                   <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',marginTop:10}}>
                     <Text style={styles.head}>Yorumlar</Text>
-                    <Pressable ><Text style={{color:'#FF3F55'}}>Sırala</Text></Pressable>
+                    <Pressable ><CommentFilter /></Pressable>
                   </View>
                   <Comment />
                   <Comment />
@@ -270,7 +290,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 20,
+    height: 30,
   },
   //modal section1
   modalsection1: {
