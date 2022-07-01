@@ -33,7 +33,6 @@ const wait = timeout => {
 
 const FeedScreen = ({navigation}) => {
   const [refreshing, setRefreshing] = React.useState(false);
-
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
@@ -42,6 +41,7 @@ const FeedScreen = ({navigation}) => {
   const onChangeSearch = query => setSearchQuery(query);
   return (
     <ScrollView
+      style={{marginLeft: 10, marginRight: 10}}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
